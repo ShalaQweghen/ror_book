@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 	has_many :posts
-	
+	has_many :comments, foreign_key: :commenter_id
+
 	validates :username, presence: true
 	validates :email, presence: true
 end
