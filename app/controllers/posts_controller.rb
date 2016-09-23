@@ -42,4 +42,10 @@ class PostsController < ApplicationController
 		flash[:success] = "Post successfully deleted!"
 		redirect_to posts_path
 	end
+
+	private
+
+	def post_params
+		params.require(:post).permit(:body, :user_id)
+	end
 end
