@@ -1,13 +1,10 @@
-<section class="profile">
-		<h1><%= @user.username %></h1>
-		<p><%= @user.email %></p>
-	</section>
 <section class="posts">
 	<% @user.posts.each do |post| %>
 		<div class="post">
-			<p><%= post.body %></p>
+			<p><%= link_to post.body[0..250] + "...", post_path(post) %></p>
 			<%= link_to "Edit", edit_post_path(post) %>
 			<%= link_to "Delete", post_path, method: :delete %>
+			<%= link_to "Comment (#{post.comments.count})", new_comment_path(post_id: post.id, comment: true) %>
 		</div>
 	<% end %>
 </section>

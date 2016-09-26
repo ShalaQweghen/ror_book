@@ -1,0 +1,25 @@
+<div class="container">
+	<section class="post-body right-section">
+		<p class="post-text"><%= @post.body %></p>
+		<% if @post.user.id == current_user.id %>
+			<span class="user-name">Created by <%= link_to @post.user.username, user_path(@post.user) %></span> <span class="created">Created at <%= @post.created_at %></span> <span class="comment-link"><%= link_to "Comment", new_comment_path(post_id: @post.id, comment: true) %></span>
+		<% else %>
+			<span><%= link_to "Comment", new_comment_path %></span>
+		<% end %>
+	</section>
+	<section class="comments-body right-section">
+		<div class="comments">
+				<% @post.comments.each do |comment| %>
+					<% unless comment.commenter.nil? %>
+							<div class="comment">
+								<p><%= comment.body %></p>
+								<span>By <%= link_to comment.commenter.username, user_path(comment.commenter.id) %></span> <span><%= comment.updated_at %></span>
+							</div>
+					<% end %>
+				<% end %>
+		</div>
+		</div>
+		<% unless params[:comment].nil? %>
+			<%= render "comments/form" %>
+		<% end %>
+	</section>

@@ -4,8 +4,26 @@ html {
 }
 
 body {
+	height: 100%;
 	min-height: 100%;
 	color: #333;
+	overflow-x: hidden;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+textarea {
+	height: 300px;
+	width: 600px;
+	margin-top: 20px;
+}
+
+label {
+	font-size: 20px;
+	font-style: italic;
+	font-weight: 700;
 }
 
 /* HEADER */
@@ -17,12 +35,6 @@ header {
 	left: 0;
 	height: 60px;
 	background-color: #e2e2e2;
-}
-
-.header-title {
-	margin-top: 10px;
-	margin-left: 20px;
-	display: inline-block;
 }
 
 .header-title a, .nav-up a {
@@ -60,10 +72,35 @@ footer {
 	margin-top: 20px;
 }
 
+/* FORMS */
+
+.form {
+	width: 250px;
+	margin: auto;
+}
+
+.post-form {
+	width: 600px;
+	margin: auto;
+}
+
+.form-title {
+	font-size: 30px;
+	text-decoration: underline;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
 /* UBI */
 
 .container {
 	margin-top: 80px;
+	width: 1050px;
+}
+
+p {
+	line-height: 20px;
+	margin-bottom: 10px;
 }
 
 /* PROFILE */
@@ -71,17 +108,66 @@ footer {
 .profile {
 	position: fixed;
 	width: 250px;
-	top: 60px;
-	bottom: 60px;
+	top: 0;
+	bottom: 0;
 	left: 0;
 	background-color: yellow;
 }
 
+.header-im {
+	height: 60px;
+	background-color: #e2e2e2;
+}
+
+.header-title {
+	margin-top: 10px;
+	margin-left: 20px;
+	display: inline-block;
+}
+
+.info {
+	margin-top: 60px;
+}
+
 .posts {
 	position: relative;
+	width: 1050px;
 	top: 60px;
-	bottom: 60px;
 	left: 250px;
 	right: 0;
+	margin-bottom: 60px;
+	padding-bottom: 60px;
 	background-color: red;
+}
+.post {
+	width: 60%;
+	padding: 20px;
+	border-bottom: 1px solid black;
+}
+
+/* POST SHOW */
+
+.right-section {
+	position: relative;
+	width: 1050;
+	left: 250px;
+}
+
+.comments {
+	margin-top: 50px;
+	margin-left: 150px;
+}
+
+.comment {
+	margin-bottom: 30px;
+}
+
+.post-text {
+	width: 900px;
+	margin-left: 50px;
+	text-align: justify;
+}
+
+.comment-link {
+	float: right;
 }

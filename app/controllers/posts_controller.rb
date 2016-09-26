@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find(params[:id])
+		@comment = @post.comments.build
 	end
 
 	def new
@@ -14,7 +15,7 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = User.find(params[:id]).posts.build(post_params)
+		@post = User.find(params[:post][:id]).posts.build(post_params)
 		if @post.save
 			flash[:success] = "Post successfully created!"
 			redirect_to @post
@@ -29,6 +30,7 @@ class PostsController < ApplicationController
 	end
 
 	def update
+		@post = Post.find(params[:id])
 		if @post.update_attributes(post_params)
 			flash[:success] = "Post successfully updated!"
 			redirect_to @post

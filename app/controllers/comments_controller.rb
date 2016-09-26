@@ -1,26 +1,18 @@
 class CommentsController < ApplicationController
 	before_action :authenticate_user!
 
-	def index
-		@comments = Post.find(params[:id]).comments
-	end
-
-	def show
-		@comment = Comment.find(params[:id])
-	end
-
 	def new
-		@comment = Post.find(params[:post_id]).build
+		redirect_to post_path(params[:post_id], comment: true)
 	end
 
 	def create
-		@comment = Post.find(params[:post_id]).build(comment_params)
+		@comment = Post.find(params[:comment][:post_id]).comments.build(comment_params)
 		if @comment.save
 			flash[:success] = "Comment successfully posted!"
-			redirect_to post_path(params[:post_id])
+			redirect_to post_path(params[:comment][:post_id])
 		else
-			flash.now[:error] = "Please check your info!"
-			render post_path(params[:post_id])
+			flash[:error] = "Please check your info!"
+			render post_path(params[:comment][:post_id])
 		end
 	end
 
@@ -29,6 +21,7 @@ class CommentsController < ApplicationController
 	end
 
 	def update
+		@comment = Comment.find(params[:id])
 		if @comment.update_attributes(comment_params)
 			flash[:success] = "Comment successfully edit!"
 			redirect_to post_path(params[:post_id])

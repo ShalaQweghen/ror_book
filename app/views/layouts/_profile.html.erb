@@ -1,0 +1,10 @@
+<section class="profile">
+	<div class="header-im">
+		<h1 class="header-title"><%= link_to "RORbook", root_path %></h1>
+	</div>
+	<div class="info">
+		<h1><%= current_user.username %></h1>
+		<p><%= current_user.email %></p>
+		<%= link_to "Create a post", new_post_path(id: current_user.id) %>
+	</div>
+</section>

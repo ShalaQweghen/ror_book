@@ -4,12 +4,16 @@
     <title>RorBook</title>
     <%= csrf_meta_tags %>
 
+    <%= stylesheet_link_tag    'reset' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag		 'main' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
   	<%= render "layouts/header" %>
+    <% if user_signed_in? %>
+      <%= render "layouts/profile" %>
+    <% end %>
     <%= yield %>
     <%= render "layouts/footer" %>
   </body>
