@@ -1,0 +1,87 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	min-height: 100%;
+	color: #333;
+}
+
+/* HEADER */
+
+header {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 60px;
+	background-color: #e2e2e2;
+}
+
+.header-title {
+	margin-top: 10px;
+	margin-left: 20px;
+	display: inline-block;
+}
+
+.header-title a, .nav-up a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.header-title a:hover, .nav-up a:hover {
+	text-decoration: underline;
+}
+
+.nav-up {
+	float: right;
+	margin-right: 20px;
+}
+
+.nav-up li {
+	display: inline-block;
+	padding: 5px 10px;
+}
+
+/* FOOTER */
+
+footer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	height: 60px;
+	background-color: #e2e2e2;
+}
+
+.by {
+	text-align: center;
+	margin-top: 20px;
+}
+
+/* UBI */
+
+.container {
+	margin-top: 80px;
+}
+
+/* PROFILE */
+
+.profile {
+	position: fixed;
+	width: 250px;
+	top: 60px;
+	bottom: 60px;
+	left: 0;
+	background-color: yellow;
+}
+
+.posts {
+	position: relative;
+	top: 60px;
+	bottom: 60px;
+	left: 250px;
+	right: 0;
+	background-color: red;
+}
