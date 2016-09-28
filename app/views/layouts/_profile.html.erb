@@ -3,12 +3,11 @@
 		<h1 class="header-title"><%= link_to "RORbook", root_path %></h1>
 	</div>
 	<div class="info">
-		<h1><%= current_user.username %></h1>
-		<p><%= current_user.email %></p>
-		<div class="actions">
-			<%= link_to "Create a post", new_post_path(id: current_user.id), class: "action" %>
-			<%= link_to "Edit account", edit_user_registration_path(id: current_user.id), class: "action" %>
-		</div>
-
+		<%= image_tag("/images/Untitled.png", size: "50", class: "user-pic") %>
+		<h2><%= current_user.username %></h2>
+	</div>
+	<div class="actions">
+		<%= link_to "Create a post", new_post_path(id: current_user.id), class: "action" %>
+		<%= link_to "Edit account", edit_user_registration_path(id: current_user.id), class: "action" %>
 	</div>
 </section>

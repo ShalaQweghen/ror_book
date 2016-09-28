@@ -1,11 +1,18 @@
 <section class="posts">
+	<% if current_user.id == @user.id %>
+		<h1 class="posts-title">Your Posts</h1>
+	<% else %>
+		<h1 class="posts-title"><%= @user.username.capitalize %>'s Posts</h1>
+	<% end %>
 	<% @user.posts.each do |post| %>
 		<div class="post">
 			<p><%= link_to post.body[0..250] + "...", post_path(post) %></p>
-			<%= link_to "Edit", edit_post_path(post) %>
-			<%= link_to "Delete", post_path, method: :delete %>
-			<span>Like (<%= post.likes %>)</span>
-			<%= link_to "Comment (#{post.comments.count})", new_comment_path(post_id: post.id, comment: true) %>
+			<% if current_user.id == @user.id %>
+				<%= link_to "Edit", edit_post_path(post), class: "left-link" %>
+				<%= link_to "Delete", post_path, method: :delete, class: "left-link" %>
+			<% end %>
+			<a class="right-link" href="#">Like (<%= post.likes %>)</a>
+			<%= link_to "Comment (#{post.comments.count})", new_comment_path(post_id: post.id, comment: true), class: "right-link" %>
 		</div>
 	<% end %>
 </section>
