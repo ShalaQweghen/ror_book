@@ -7,7 +7,11 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find(params[:id])
-		@comment = @post.comments.build
+		if params[:edit]
+			@comment = Comment.find(params[:id])
+		else
+			@comment = @post.comments.build
+		end
 	end
 
 	def new

@@ -1,25 +1,29 @@
 <div class="container">
 	<section class="post-body right-section">
-		<p class="post-text"><%= @post.body %></p>
-		<% if @post.user.id == current_user.id %>
-			<span class="user-name">Created by <%= link_to @post.user.username, user_path(@post.user) %></span> <span class="created">Created at <%= @post.created_at %></span> <span class="comment-link"><%= link_to "Comment", new_comment_path(post_id: @post.id, comment: true) %></span>
-		<% else %>
-			<span><%= link_to "Comment", new_comment_path %></span>
-		<% end %>
+		<div class="post-main">
+			<p class="post-text"><%= @post.body %></p>
+		</div>
+		<div class="post-links">
+			<span class="user-name">Created by <%= link_to @post.user.username, user_path(@post.user) %></span> <span class="created">Created on <%= @post.created_at.strftime("%m-%d-%Y at %I:%M %p") %></span> <span class="right-link"><%= link_to "Comment (#{@post.comments.count})", new_comment_path(post_id: @post.id, comment: true) %></span> <span class="right-link">Like (<%= @post.likes %>)</span>
+		</div>
 	</section>
 	<section class="comments-body right-section">
 		<div class="comments">
+			<h2 class="comments-title">Comments:</h2>
 				<% @post.comments.each do |comment| %>
 					<% unless comment.commenter.nil? %>
 							<div class="comment">
 								<p><%= comment.body %></p>
-								<span>By <%= link_to comment.commenter.username, user_path(comment.commenter.id) %></span> <span><%= comment.updated_at %></span>
+								<span class="user-name">by <%= link_to comment.commenter.username, user_path(comment.commenter.id) %></span> <span class="created">on <%= comment.updated_at.strftime("%m-%d-%Y at %I:%M %p") %></span>
+								<% if comment.commenter.id == current_user.id %>
+									<span class="right-link comment-right-link"><%= link_to "Edit", edit_comment_path(post_id: @post.id, comment: true, edit: true) %></span> <span class="right-link comment-right-link"><%= link_to "Delete", comment_path(comment, post_id: @post.id), method: :delete %></span>
+								<% end %>
 							</div>
 					<% end %>
 				<% end %>
+				<% unless params[:comment].nil? %>
+					<%= render "comments/form" %>
+				<% end %>
 		</div>
-		</div>
-		<% unless params[:comment].nil? %>
-			<%= render "comments/form" %>
-		<% end %>
 	</section>
+</div>
