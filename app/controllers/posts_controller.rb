@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 	def show
 		@post = Post.find(params[:id])
 		if params[:edit]
-			@comment = Comment.find(params[:id])
+			@comment = Comment.find(params[:comment_id])
 		else
 			@comment = @post.comments.build
 		end

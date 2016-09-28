@@ -4,6 +4,7 @@
 			<p><%= link_to post.body[0..250] + "...", post_path(post) %></p>
 			<%= link_to "Edit", edit_post_path(post) %>
 			<%= link_to "Delete", post_path, method: :delete %>
+			<span>Like (<%= post.likes %>)</span>
 			<%= link_to "Comment (#{post.comments.count})", new_comment_path(post_id: post.id, comment: true) %>
 		</div>
 	<% end %>

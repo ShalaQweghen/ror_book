@@ -17,17 +17,17 @@ class CommentsController < ApplicationController
 	end
 
 	def edit
-		redirect_to post_path(params[:post_id], comment: true, edit: true)
+		redirect_to post_path(params[:post_id], comment: true, edit: true, comment_id: params[:id])
 	end
 
 	def update
 		@comment = Comment.find(params[:id])
 		if @comment.update_attributes(comment_params)
 			flash[:success] = "Comment successfully edit!"
-			redirect_to post_path(params[:post_id])
+			redirect_to post_path(params[:comment][:post_id])
 		else
 			flash.now[:error] = "Please check your info!"
-			render post_url(params[:post_id])
+			render post_url(params[:comment][:post_id])
 		end
 	end
 
