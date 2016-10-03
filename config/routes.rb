@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'friendships/new'
+
+  get 'friendships/create'
+
+  get 'friendships/delete'
+
   devise_for :users
 
   devise_scope :user do

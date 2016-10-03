@@ -16,3 +16,12 @@
 		</div>
 	<% end %>
 </section>
+
+<section class="right">
+	<div class="right-info">
+		<%= image_tag("/images/Untitled.png", size: "50", class: "user-pic") %>
+	</div>
+	<div class="add">
+		<%= link_to "Add #{@user.username} as a friend.", @user %>
+	</div>
+</section>

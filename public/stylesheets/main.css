@@ -373,3 +373,45 @@ a.right-link, span.right-link {
 .user-item:hover {
 	border: 1px solid #e2e2e2;
 }
+
+/* FRIENDSHIP */
+
+.right {
+	position: fixed;
+	height: 60px;
+	width: 80px;
+	top: 45%;
+	bottom: 0;
+	right: 0;
+	border-radius: 5px 0 0 5px;
+	background-color: #e2e2e2;
+}
+
+.right:hover {
+	width: 210px;
+}
+
+.right:hover .add {
+	display: inline-block;
+}
+
+.right-info {
+	display: inline-block;
+	margin-top: 0;
+}
+
+.right-info img {
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.add {
+	display: none;
+	float: right;
+	margin-top: 15px;
+	margin-right: 10px;
+	font-size: 12px;
+	word-wrap: break-word;
+	width: 130px;
+
+}
