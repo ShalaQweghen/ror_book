@@ -16,12 +16,17 @@
 		</div>
 	<% end %>
 </section>
-
-<section class="right">
-	<div class="right-info">
-		<%= image_tag("/images/Untitled.png", size: "50", class: "user-pic") %>
-	</div>
-	<div class="add">
-		<%= link_to "Add #{@user.username} as a friend.", @user %>
-	</div>
-</section>
+<% if current_user.id != @user.id && Friendship.all.none? { |f| f.friender_id == current_user.id && f.friend_id == @user.id } && Friendship.all.none? { |f| f.friender_id == @user.id && f.friend_id == current_user.id } %>
+	<section class="right">
+		<div class="right-info">
+			<%= image_tag("/images/Untitled.png", size: "50", class: "user-pic") %>
+		</div>
+		<div class="add">
+			<%= form_for(:friendship, url: friendships_path) do |f| %>
+				<%= f.hidden_field :friender_id, value: current_user.id %>
+				<%= f.hidden_field :friend_id, value: params[:id] %>
+				<%= f.submit "Add as a friend" %>
+			<% end %>
+		</div>
+	</section>
+<% end %>

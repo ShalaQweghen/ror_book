@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 		@comment = Post.find(params[:comment][:post_id]).comments.build(comment_params)
 		if @comment.save
 			flash[:success] = "Comment successfully posted!"
-			redirect_to post_path(params[:comment][:post_id])
+			redirect_back(fallback_location: post_path(params[:comment][:post_id]))
 		else
 			flash[:error] = "Please check your info!"
 			render post_path(params[:comment][:post_id])
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
 		@comment = Comment.find(params[:id])
 		if @comment.update_attributes(comment_params)
 			flash[:success] = "Comment successfully edit!"
-			redirect_to post_path(params[:comment][:post_id])
+			redirect_back(fallback_location: post_path(params[:comment][:post_id]))
 		else
 			flash.now[:error] = "Please check your info!"
 			render post_url(params[:comment][:post_id])
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 	def destroy
 		Comment.find(params[:id]).destroy
 		flash[:success] = "Comment successfully deleted!"
-		redirect_to post_path(params[:post_id])
+		redirect_back(fallback_location: post_path(params[:post_id]))
 	end
 
 	private

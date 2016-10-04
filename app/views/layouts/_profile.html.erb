@@ -10,6 +10,33 @@
 		<%= link_to "Create a post", new_post_path(id: current_user.id), class: "action" %>
 		<%= link_to "Edit account", edit_user_registration_path(id: current_user.id), class: "action" %>
 	</div>
-	<div class="accept">
+	<% if current_user.friendships.any? { |f| f.approve == 0 } %>
+		<div class="accept">
+			<h3 class="request-title">Friend Requests</h3>
+			<ul>
+				<% current_user.friendships.each do |friendship| %>
+					<% if friendship.approve == 0 %>
+						<li class="request"><%= friendship.friender.username %> wants to add you as a friend</li>
+						<%= form_for(:friendship, url: friendship_path(friendship), method: :patch) do |f| %>
+							<%= f.hidden_field :friender_id, value: friendship.friender_id %>
+							<%= f.hidden_field :friend_id, value: current_user.id %>
+							<%= f.hidden_field :approve, value: 1 %>
+							<%= f.submit "Accept" %>
+						<% end %>
+						<%= link_to "Decline", friendship_path(friendship), method: :delete %>
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<div class="friends">
+		<h3 class="friends-title">Friends</h3>
+		<ul>
+			<% current_user.friendships.each do |friendship| %>
+				<% if friendship.approve == 1 %>
+					<li class="friend"><%= friendship.friender.username %></li>
+				<% end %>
+			<% end %>
+		</ul>
 	</div>
 </section>

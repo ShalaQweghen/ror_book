@@ -2,7 +2,8 @@ class PostsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@posts = Post.all.order(updated_at: :desc)
+		list = current_user.friendships.map { |f| f.friender_id } + current_user.friendings.map { |f| f.friend_id } << current_user.id
+		@posts = Post.all.order(updated_at: :desc).select { |p| list.include?(p.user_id) }
 	end
 
 	def show

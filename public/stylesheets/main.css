@@ -177,10 +177,12 @@ footer {
 .profile {
 	position: fixed;
 	width: 250px;
+	max-height: 100%;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	background-color: #66cdaa;
+	overflow-y: auto;
 }
 
 .header-im {
@@ -261,6 +263,23 @@ footer {
 	padding: 20px;
 	padding-bottom: 25px;
 	border-bottom: 1px solid #e2e2e2;
+}
+
+.accept, .friends {
+	width: 90%;
+	margin: auto;
+	margin-top: 30px;
+	padding: 10px;
+}
+
+.request-title, .friends-title {
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.request, .friend {
+	margin-bottom: 10px;
+	font-size: 14px;
 }
 
 /* POST SHOW */

@@ -1,18 +1,18 @@
 class FriendshipsController < ApplicationController
 
   def new
-  	@user = User.find(params[:user_id])
-  	@friendship = @user.friendships.build
+    redirect_to user_path(params[:user_id], friend: true)
   end
 
   def create
-  	@user = User.find(params[:user_id])
-  	@friendship = @user.friendships.build(friendship_params)
-  	if @friendship.save
-
-  	else
-
-  	end
+  	@friending = current_user.friendings.build(friendship_params)
+  	if @friending.save
+      @friend = User.find(params[:friendship][:friend_id])
+      @friendship = @friend.friendships.build(friendship_params)
+      redirect_back(fallback_location: user_path(current_user.id))
+    else
+      redirect_to root_path
+    end
   end
 
   def edit
@@ -22,15 +22,17 @@ class FriendshipsController < ApplicationController
   def update
     @friendship = Friendship.find(params[:id])
     @friendship.update_attributes(friendship_params)
+    redirect_back(fallback_location: user_path(current_user.id))
   end
 
-  def delete
+  def destroy
     Friendship.find(params[:id]).destroy
+    redirect_back(fallback_location: user_path(current_user.id))
   end
 
   private
 
   def friendship_params
-  	params.require(:friendship).permit(:user_id, :friend_id, :save)
+  	params.require(:friendship).permit(:friender_id, :friend_id, :approve)
   end
 end

@@ -2,6 +2,13 @@
 	<ul class="user-list">
 		<% @users.each do |user| %>
 			<li class="user-item"><%= image_tag("/images/Untitled.png", size: "40") %> <%= link_to user.username, user_path(user.id) %></li>
+			<% if current_user.id != user.id && Friendship.all.none? { |f| f.friender_id == current_user.id && f.friend_id == user.id } && Friendship.all.none? { |f| f.friender_id == user.id && f.friend_id == current_user.id } %>
+				<%= form_for(:friendship, url: friendships_path) do |f| %>
+					<%= f.hidden_field :friender_id, value: current_user.id %>
+					<%= f.hidden_field :friend_id, value: user.id %>
+					<%= f.submit "Add as a friend" %>
+				<% end %>
+			<% end %>
 		<% end %>
 	</ul>
 </section>
