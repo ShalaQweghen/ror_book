@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, #:confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
+
+  mount_uploader :picture, ::PictureUploader
 
   has_many :posts, dependent: :destroy
   has_many :friendships, dependent: :destroy, foreign_key: :friend_id
@@ -19,6 +21,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.username = auth.info.name
+      user.picture = auth.info.image
     end
   end
 

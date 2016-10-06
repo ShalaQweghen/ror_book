@@ -1,0 +1,9 @@
+development:
+  cloud_name: "dqrmtn7wi"
+  api_key: "856986154781355"
+  api_secret: "k_4nczI-cjpFlOYtBdp9RTL8fWI"
+
+test:
+  cloud_name: "dqrmtn7wi"
+  api_key: "856986154781355"
+  api_secret: "k_4nczI-cjpFlOYtBdp9RTL8fWI"

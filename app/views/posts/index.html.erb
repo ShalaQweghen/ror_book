@@ -2,12 +2,15 @@
 	<h1 class="posts-title">Posts</h1>
 	<% @posts.each do |post| %>
 		<div class="post">
-			<%= image_tag("/images/Untitled.png", size: "30", class: "pic") %>
+			<%= image_tag(post.user.picture, size: "30", class: "pic") %>
 			<%= link_to post.user.username, user_path(post.user), class: "name" %>
 			<p class="post-text-index"><%= link_to post.body[0..250] + "...", post_path(post) %></p>
 			<span class="created">Created on <%= post.created_at.strftime("%m-%d-%Y at %I:%M %p") %>
-			<%= link_to "Like (#{post.likes})", post_path(post), class: "right-link" %>
 			<%= link_to "Comment (#{post.comments.count})", post_path(post), class: "right-link" %>
+			<%= form_for(post, url: post_path(post), method: :patch, html: { class: "like-form"}) do |f| %>
+				<%= f.hidden_field :likes, value: post.likes += 1 %>
+				<%= f.submit "Like (#{post.likes - 1})", class: "likes" %>
+			<% end %>
 		</div>
 	<% end %>
 </section>

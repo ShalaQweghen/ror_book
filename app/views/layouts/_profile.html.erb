@@ -3,7 +3,7 @@
 		<h1 class="header-title"><%= link_to "RORbook", root_path %></h1>
 	</div>
 	<div class="info">
-		<%= image_tag("/images/Untitled.png", size: "50", class: "user-pic") %>
+		<%= link_to image_tag(current_user.picture, size: "50", class: "user-pic"), user_path(current_user) %>
 		<h2><%= current_user.username %></h2>
 	</div>
 	<div class="actions">
@@ -16,14 +16,14 @@
 			<ul>
 				<% current_user.friendships.each do |friendship| %>
 					<% if friendship.approve == 0 %>
-						<li class="request"><%= friendship.friender.username %> wants to add you as a friend</li>
+						<li class="request"><%= link_to friendship.friender.username, user_path(friendship.friender) %> wants to add you as a friend</li>
 						<%= form_for(:friendship, url: friendship_path(friendship), method: :patch) do |f| %>
 							<%= f.hidden_field :friender_id, value: friendship.friender_id %>
 							<%= f.hidden_field :friend_id, value: current_user.id %>
 							<%= f.hidden_field :approve, value: 1 %>
-							<%= f.submit "Accept" %>
+							<%= f.submit "Accept", class: "accept-submit" %>
 						<% end %>
-						<%= link_to "Decline", friendship_path(friendship), method: :delete %>
+						<%= link_to "Decline", friendship_path(friendship), method: :delete, class: "decline" %>
 					<% end %>
 				<% end %>
 			</ul>
@@ -34,7 +34,7 @@
 		<ul>
 			<% current_user.friendships.each do |friendship| %>
 				<% if friendship.approve == 1 %>
-					<li class="friend"><%= friendship.friender.username %></li>
+					<a href="<%= user_path(friendship.friender) %>" title="<%= friendship.friender.username %>"><li class="friend"><%= image_tag(friendship.friender.picture, size: "20") %></li></a>
 				<% end %>
 			<% end %>
 		</ul>

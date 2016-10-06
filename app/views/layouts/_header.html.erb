@@ -5,13 +5,13 @@
 	<nav class="nav-up">
 		<ul>
 		<% if user_signed_in? %>
-			<li><%= link_to "Users", users_path %></li>
-			<li><%= link_to "Posts", posts_path %></li>
-			<li><%= link_to "Profile", user_path(current_user) %></li>
+			<a href="<%= users_path %>"><li>Users</li></a>
+			<a href="<%= posts_path %>"><li>Posts</li></a>
+			<a href="<%= user_path(current_user) %>"><li>Profile</li></a>
 			<li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
 		<% else %>
-			<li><%= link_to "Sign in", new_user_session_path %></li>
-			<li><%= link_to "Sign up", new_user_registration_path %></li>
+			<a href="<%= new_user_session_path %>"><li>Sign in</li></a>
+			<a href="<%= new_user_registration_path %>"><li>Sign up</li></a>
 		<% end %>
 		</ul>
 	</nav>

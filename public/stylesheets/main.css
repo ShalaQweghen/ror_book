@@ -179,10 +179,11 @@ footer {
 	width: 250px;
 	max-height: 100%;
 	top: 0;
-	bottom: 0;
+	bottom: 35px;
 	left: 0;
 	background-color: #66cdaa;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .header-im {
@@ -270,6 +271,12 @@ footer {
 	margin: auto;
 	margin-top: 30px;
 	padding: 10px;
+	border-bottom: 1px solid #f0f8ff;
+	border-top: 1px solid #f0f8ff;
+}
+
+.friends {
+	margin-bottom: 5px;
 }
 
 .request-title, .friends-title {
@@ -277,12 +284,64 @@ footer {
 	text-align: center;
 }
 
-.request, .friend {
+.request {
 	margin-bottom: 10px;
 	font-size: 14px;
+	line-height: 20px;
+	clear: both;
+}
+
+.friend {
+	width: 20px;
+	display: inline-block;
+}
+
+.accept-submit, .decline {
+	width: 60px;
+	height: 20px;
+	display: inline-block;
+	border: 1px solid #e2e2e2;
+	font-size: 13px;
+	color: white;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+
+.accept-submit {
+	background-color: green;
+	padding-bottom: 1px;
+}
+
+.accept-submit:hover {
+	cursor: pointer;
+	background-color: lightgreen;
+}
+
+.decline {
+	float: right;
+	text-align: center;
+	text-decoration: none;
+	background-color: red;
+	margin-top: -30px;
+	padding-top: 2px;
+}
+
+.decline:hover {
+	background-color: crimson;
+}
+
+.friend span {
+	vertical-align: top;
+	padding-left: 5px;
 }
 
 /* POST SHOW */
+
+.post-pic {
+	display: block;
+	margin: auto;
+	margin-top: 15px;
+}
 
 .post-body {
 	width: 100%;
@@ -328,9 +387,21 @@ a.right-link, span.right-link {
 	color: #0099cc;
 }
 
-.right-link:hover, .left-link:hover {
+.likes {
+	border: 0;
+	color: #0099cc;
+	background-color: transparent;
+	cursor: pointer;
+	font-family: inherit;
+}
+
+.right-link:hover, .left-link:hover, .likes:hover {
 	color: #3b5998;
 	text-decoration: underline;
+}
+
+.like-form {
+	float: right;
 }
 
 .comment-right-link {
@@ -374,13 +445,7 @@ a.right-link, span.right-link {
 	margin-left: 30px;
 }
 
-.user-item {
-	width: 400px;
-	margin-bottom: 10px;
-	padding: 10px;
-}
-
-.user-item a {
+.user-list a {
 	text-decoration: none;
 	color: #0099cc;
 	display: inline-block;
@@ -389,8 +454,33 @@ a.right-link, span.right-link {
 	vertical-align: top;
 }
 
-.user-item:hover {
+.user-list a:hover {
 	border: 1px solid #e2e2e2;
+}
+
+.user-item {
+	width: 400px;
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+.user-item span {
+	display: inline-block;
+	padding-top: 10px;
+	padding-left: 10px;
+	vertical-align: top;
+}
+
+.friend-request {
+	border: 1px solid #e2e2e2;
+	display: inline-block;
+	background-color: #e2e2e2;
+	margin-bottom: 10px;
+}
+
+.friend-request:hover {
+	background-color: #eee;
+	cursor: pointer;
 }
 
 /* FRIENDSHIP */
@@ -433,4 +523,59 @@ a.right-link, span.right-link {
 	word-wrap: break-word;
 	width: 130px;
 
+}
+
+/* EDIT POST */
+
+.preview, .attach {
+	width: 280px;
+	display: inline-block;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	border: 1px solid #e2e2e2;
+	padding: 10px;
+}
+
+.attach {
+	height: 124px;
+	vertical-align: top;
+	padding-top: 45px;
+	padding-left: 35px;
+}
+
+.preview img {
+	display: inline-block;
+	margin: auto;
+}
+
+.or {
+	display: inline-block;
+	font-size: 15px;
+	width: 20px;
+	margin-right: 5px;
+	vertical-align: top;
+	font-weight: bold;
+}
+
+.check {
+	font-size: 13px;
+	display: inline-block;
+	vertical-align: 4px;
+}
+
+input[type="checkbox"] {
+	display: inline-block;
+}
+
+.post-submit {
+	margin-top: 5px;
+}
+
+.post-submit input[type="submit"] {
+	width: 100%;
+	display: block;
+	border: 1px solid #e2e2e2;
+	height: 40px;
+	border-radius: 5px;
+	cursor: pointer;
 }

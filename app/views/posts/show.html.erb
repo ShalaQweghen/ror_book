@@ -2,9 +2,14 @@
 	<section class="post-body right-section">
 		<div class="post-main">
 			<p class="post-text"><%= @post.body %></p>
+			<%= image_tag @post.picture, class: "post-pic" %>
 		</div>
 		<div class="post-links">
-			<span class="user-name">Created by <%= link_to @post.user.username, user_path(@post.user) %></span> <span class="created">Created on <%= @post.created_at.strftime("%m-%d-%Y at %I:%M %p") %></span> <span class="right-link"><%= link_to "Comment (#{@post.comments.count})", new_comment_path(post_id: @post.id, comment: true) %></span> <span class="right-link">Like (<%= @post.likes %>)</span>
+			<span class="user-name">Created by <%= link_to @post.user.username, user_path(@post.user) %></span> <span class="created">Created on <%= @post.created_at.strftime("%m-%d-%Y at %I:%M %p") %></span> <span class="right-link">Comment (<%= @post.comments.count %>)</span>
+			<%= form_for(@post, url: post_path(@post), method: :patch, html: { class: "like-form"}) do |f| %>
+				<%= f.hidden_field :likes, value: @post.likes += 1 %>
+				<%= f.submit "Like (#{@post.likes - 1})", class: "likes" %>
+			<% end %>
 		</div>
 	</section>
 	<section class="comments-body right-section">
@@ -16,14 +21,12 @@
 								<p><%= comment.body %></p>
 								<span class="user-name">by <%= link_to comment.commenter.username, user_path(comment.commenter.id) %></span> <span class="created">on <%= comment.updated_at.strftime("%m-%d-%Y at %I:%M %p") %></span>
 								<% if comment.commenter.id == current_user.id %>
-									<span class="right-link comment-right-link"><%= link_to "Edit", edit_comment_path(comment.id, post_id: @post.id, comment: true, edit: true) %></span> <span class="right-link comment-right-link"><%= link_to "Delete", comment_path(comment, post_id: @post.id), method: :delete %></span>
+									<span class="right-link comment-right-link"><%= link_to "Edit", edit_comment_path(comment.id, post_id: @post.id, edit: true) %></span> <span class="right-link comment-right-link"><%= link_to "Delete", comment_path(comment, post_id: @post.id), method: :delete %></span>
 								<% end %>
 							</div>
 					<% end %>
 				<% end %>
-				<% unless params[:comment].nil? %>
-					<%= render "comments/form" %>
-				<% end %>
+				<%= render "comments/form" %>
 		</div>
 	</section>
 </div>

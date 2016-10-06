@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
 	def index
 		list = current_user.friendships.map { |f| f.friender_id } + current_user.friendings.map { |f| f.friend_id } << current_user.id
-		@posts = Post.all.order(updated_at: :desc).select { |p| list.include?(p.user_id) }
+		@posts = Post.all.order(created_at: :desc).select { |p| list.include?(p.user_id) }
 	end
 
 	def show
@@ -54,6 +54,6 @@ class PostsController < ApplicationController
 	private
 
 	def post_params
-		params.require(:post).permit(:body, :user_id)
+		params.require(:post).permit(:body, :user_id, :picture, :remove_picture, :likes)
 	end
 end
