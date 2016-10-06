@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
   has_many :frienders, through: :friendships
 	has_many :comments, foreign_key: :commenter_id, dependent: :destroy
+  has_many :likes
 
 	validates :username, presence: true
 	validates :email, presence: true

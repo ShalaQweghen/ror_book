@@ -6,9 +6,10 @@
 		</div>
 		<div class="post-links">
 			<span class="user-name">Created by <%= link_to @post.user.username, user_path(@post.user) %></span> <span class="created">Created on <%= @post.created_at.strftime("%m-%d-%Y at %I:%M %p") %></span> <span class="right-link">Comment (<%= @post.comments.count %>)</span>
-			<%= form_for(@post, url: post_path(@post), method: :patch, html: { class: "like-form"}) do |f| %>
-				<%= f.hidden_field :likes, value: @post.likes += 1 %>
-				<%= f.submit "Like (#{@post.likes - 1})", class: "likes" %>
+			<%= form_for(:like, url: likes_path, html: { class: "like-form"}) do |f| %>
+				<%= f.hidden_field :user_id, value: @post.user.id %>
+				<%= f.hidden_field :post_id, value: @post.id %>
+				<%= f.submit "Like (#{Like.where(post_id: @post.id).count})", class: "likes" %>
 			<% end %>
 		</div>
 	</section>
@@ -30,3 +31,5 @@
 		</div>
 	</section>
 </div>
+
+

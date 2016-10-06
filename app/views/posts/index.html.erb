@@ -7,9 +7,10 @@
 			<p class="post-text-index"><%= link_to post.body[0..250] + "...", post_path(post) %></p>
 			<span class="created">Created on <%= post.created_at.strftime("%m-%d-%Y at %I:%M %p") %>
 			<%= link_to "Comment (#{post.comments.count})", post_path(post), class: "right-link" %>
-			<%= form_for(post, url: post_path(post), method: :patch, html: { class: "like-form"}) do |f| %>
-				<%= f.hidden_field :likes, value: post.likes += 1 %>
-				<%= f.submit "Like (#{post.likes - 1})", class: "likes" %>
+			<%= form_for(:like, url: likes_path, html: { class: "like-form"}) do |f| %>
+				<%= f.hidden_field :user_id, value: post.user.id %>
+				<%= f.hidden_field :post_id, value: post.id %>
+				<%= f.submit "Like (#{Like.where(post_id: post.id).count})", class: "likes" %>
 			<% end %>
 		</div>
 	<% end %>
