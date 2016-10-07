@@ -7,9 +7,10 @@
 		<div class="post-links">
 			<span class="user-name">Created by <%= link_to @post.user.username, user_path(@post.user) %></span> <span class="created">Created on <%= @post.created_at.strftime("%m-%d-%Y at %I:%M %p") %></span> <span class="right-link">Comment (<%= @post.comments.count %>)</span>
 			<%= form_for(:like, url: likes_path, html: { class: "like-form"}) do |f| %>
-				<%= f.hidden_field :user_id, value: @post.user.id %>
-				<%= f.hidden_field :post_id, value: @post.id %>
-				<%= f.submit "Like (#{Like.where(post_id: @post.id).count})", class: "likes" %>
+				<%= f.hidden_field :user_id, value: current_user.id %>
+				<%= f.hidden_field :likable_id, value: @post.id %>
+				<%= f.hidden_field :likable_type, value: "Post" %>
+				<%= f.submit "#{Like.where(user_id: current_user.id, likable_id: @post.id, likable_type: "Post").first.blank? ? 'Like' : 'Unlike'} (#{@post.likes.count})", class: "likes" %>
 			<% end %>
 		</div>
 	</section>
@@ -22,7 +23,7 @@
 								<p><%= comment.body %></p>
 								<span class="user-name">by <%= link_to comment.commenter.username, user_path(comment.commenter.id) %></span> <span class="created">on <%= comment.updated_at.strftime("%m-%d-%Y at %I:%M %p") %></span>
 								<% if comment.commenter.id == current_user.id %>
-									<span class="right-link comment-right-link"><%= link_to "Edit", edit_comment_path(comment.id, post_id: @post.id, edit: true) %></span> <span class="right-link comment-right-link"><%= link_to "Delete", comment_path(comment, post_id: @post.id), method: :delete %></span>
+									<span class="right-link comment-right-link"><%= link_to "Edit", edit_comment_path(comment.id, commentable_id: @post.id, edit: true) %></span> <span class="right-link comment-right-link"><%= link_to "Delete", comment_path(comment, commentable_id: @post.id), method: :delete %></span>
 								<% end %>
 							</div>
 					<% end %>

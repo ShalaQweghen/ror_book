@@ -8,9 +8,10 @@
 			<span class="created">Created on <%= post.created_at.strftime("%m-%d-%Y at %I:%M %p") %>
 			<%= link_to "Comment (#{post.comments.count})", post_path(post), class: "right-link" %>
 			<%= form_for(:like, url: likes_path, html: { class: "like-form"}) do |f| %>
-				<%= f.hidden_field :user_id, value: post.user.id %>
-				<%= f.hidden_field :post_id, value: post.id %>
-				<%= f.submit "Like (#{Like.where(post_id: post.id).count})", class: "likes" %>
+				<%= f.hidden_field :user_id, value: current_user.id %>
+				<%= f.hidden_field :likable_id, value: post.id %>
+				<%= f.hidden_field :likable_type, value: "Post" %>
+				<%= f.submit "Like (#{Like.where(likable_id: post.id, likable_type: "Post").count})", class: "likes" %>
 			<% end %>
 		</div>
 	<% end %>

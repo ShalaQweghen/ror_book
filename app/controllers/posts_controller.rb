@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 		if params[:edit]
 			@comment = Comment.find(params[:comment_id])
 		else
-			@comment = @post.comments.build
+			@comment = Comment.new
 		end
 	end
 
@@ -54,6 +54,6 @@ class PostsController < ApplicationController
 	private
 
 	def post_params
-		params.require(:post).permit(:body, :user_id, :picture, :remove_picture, :likes)
+		params.require(:post).permit(:body, :user_id, :picture, :remove_picture)
 	end
 end

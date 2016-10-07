@@ -483,6 +483,15 @@ a.right-link, span.right-link {
 	cursor: pointer;
 }
 
+.user-container {
+	width: 415px;
+	display: inline-block;
+}
+
+.friend-form {
+	width: 400px;
+}
+
 /* FRIENDSHIP */
 
 .right {

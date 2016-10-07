@@ -1,7 +1,8 @@
 <div class="comment-form right-section">
 	<%= form_for(@comment) do |f| %>
 		<%= f.hidden_field :commenter_id, value: current_user.id %>
-		<%= f.hidden_field :post_id, value: @post.id %>
+		<%= f.hidden_field :commentable_id, value: @post.id %>
+		<%= f.hidden_field :commentable_type, value: "Post" %>
 		<%= f.label :body, "Your comment: " %><br>
 		<%= f.text_area :body %>
 		<div class="post-submit">

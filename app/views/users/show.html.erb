@@ -11,15 +11,15 @@
 				<%= link_to "Edit", edit_post_path(post), class: "left-link" %>
 				<%= link_to "Delete", post_path, method: :delete, class: "left-link" %>
 			<% end %>
-			<a class="right-link" href="#">Like (<%= post.likes %>)</a>
-			<%= link_to "Comment (#{post.comments.count})", new_comment_path(post_id: post.id, comment: true), class: "right-link" %>
+			<span class="right-link" href="#">Likes (<%= post.likes.count %>)</span>
+			<span class="right-link">Comments (<%= post.comments.count %>)</span>
 		</div>
 	<% end %>
 </section>
 <% if current_user.id != @user.id && Friendship.all.none? { |f| f.friender_id == current_user.id && f.friend_id == @user.id } && Friendship.all.none? { |f| f.friender_id == @user.id && f.friend_id == current_user.id } %>
 	<section class="right">
 		<div class="right-info">
-			<%= image_tag("/images/Untitled.png", size: "50", class: "user-pic") %>
+			<%= image_tag(@user.picture, size: "50", class: "user-pic") %>
 		</div>
 		<div class="add">
 			<%= form_for(:friendship, url: friendships_path) do |f| %>
