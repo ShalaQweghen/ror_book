@@ -2,12 +2,10 @@ class PostsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		list = current_user.friendships.map { |f| f.friender_id } + current_user.friendings.map { |f| f.friend_id } << current_user.id
-		@posts = Post.all.order(created_at: :desc).select { |p| list.include?(p.user_id) }
 	end
 
 	def show
-		@post = Post.find(params[:id])
+		@posting = Post.find(params[:id])
 		if params[:edit]
 			@comment = Comment.find(params[:comment_id])
 		else

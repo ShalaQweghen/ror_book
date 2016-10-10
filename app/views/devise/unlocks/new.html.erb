@@ -1,8 +1,8 @@
-<div class="container form">
-	<h2>Resend unlock instructions</h2>
+<div class="container form edit">
 
-	<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+	<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "form-body" }) do |f| %>
 	  <%= devise_error_messages! %>
+	  <h2 class="title">Resend unlock instructions</h2>
 
 	  <div class="field">
 	    <%= f.label :email %><br />
@@ -12,7 +12,8 @@
 	  <div class="actions">
 	    <%= f.submit "Resend unlock instructions" %>
 	  </div>
+
+	  <%= render "devise/shared/links" %>
 	<% end %>
 
-	<%= render "devise/shared/links" %>
 </div>

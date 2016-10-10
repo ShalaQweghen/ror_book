@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :friendships, dependent: :destroy, foreign_key: :friend_id
-  has_many :friendings, dependent: :destroy, class_name: "Friendship", foreign_key: :friender_id
+  has_many :friendings, class_name: "Friendship", dependent: :destroy, foreign_key: :friender_id
+  has_many :friends, through: :friendships
   has_many :frienders, through: :friendships
 	has_many :comments, foreign_key: :commenter_id, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -22,7 +23,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.username = auth.info.name
-      user.picture = auth.info.image
+      user.picture = auth.info.image_url
     end
   end
 

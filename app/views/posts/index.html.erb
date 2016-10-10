@@ -1,17 +1,21 @@
 <section class="posts">
 	<h1 class="posts-title">Posts</h1>
-	<% @posts.each do |post| %>
+	<% posts.each do |post| %>
 		<div class="post">
 			<%= image_tag(post.user.picture, size: "30", class: "pic") %>
 			<%= link_to post.user.username, user_path(post.user), class: "name" %>
-			<p class="post-text-index"><%= link_to post.body[0..250] + "...", post_path(post) %></p>
+			<% if post.class == Post %>
+				<p class="post-text-index"><%= link_to post.body[0..250] + "...", post_path(post) %></p>
+			<% else %>
+				<%= link_to image_tag(post.picture, class: "picture"), picture_path(post)%>
+			<% end %>
 			<span class="created">Created on <%= post.created_at.strftime("%m-%d-%Y at %I:%M %p") %>
 			<%= link_to "Comment (#{post.comments.count})", post_path(post), class: "right-link" %>
 			<%= form_for(:like, url: likes_path, html: { class: "like-form"}) do |f| %>
 				<%= f.hidden_field :user_id, value: current_user.id %>
 				<%= f.hidden_field :likable_id, value: post.id %>
-				<%= f.hidden_field :likable_type, value: "Post" %>
-				<%= f.submit "Like (#{Like.where(likable_id: post.id, likable_type: "Post").count})", class: "likes" %>
+				<%= f.hidden_field :likable_type, value: post.class == Post ? "Post" : "Picture" %>
+				<%= f.submit "Like (#{Like.where(likable_id: post.id, likable_type: post.class == Post ? "Post" : "Picture").count})", class: "likes" %>
 			<% end %>
 		</div>
 	<% end %>

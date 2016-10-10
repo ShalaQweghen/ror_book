@@ -11,10 +11,10 @@
   </head>
   <body>
   	<%= render "layouts/header" %>
+    <%= render "layouts/footer" %>
     <% if user_signed_in? %>
       <%= render "layouts/profile" %>
     <% end %>
     <%= yield %>
-    <%= render "layouts/footer" %>
   </body>
 </html>

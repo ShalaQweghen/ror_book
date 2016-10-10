@@ -1,7 +1,10 @@
 <header class="main">
-	<div class="search-box">
-		<input class="search" type="text" placeholder="Search a User...">
-	</div>
+	<h1 class="header-title"><%= link_to "RORbook", root_path %></h1>
+	<% if user_signed_in? %>
+		<div class="search-box">
+			<input class="search" type="text" placeholder="Search a User...">
+		</div>
+	<% end %>
 	<nav class="nav-up">
 		<ul>
 		<% if user_signed_in? %>

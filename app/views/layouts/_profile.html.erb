@@ -8,18 +8,17 @@
 	</div>
 	<div class="actions">
 		<%= link_to "Create a post", new_post_path(id: current_user.id), class: "action" %>
+		<%= link_to "Share a picture", new_picture_path(id: current_user.id), class: "action" %>
 		<%= link_to "Edit account", edit_user_registration_path(id: current_user.id), class: "action" %>
 	</div>
-	<% if current_user.friendships.any? { |f| f.approve == 0 } %>
+	<% if current_user.friendships.any? { |f| f.approve == 0 && !f.friender_id.nil?} %>
 		<div class="accept">
 			<h3 class="request-title">Friend Requests</h3>
 			<ul>
 				<% current_user.friendships.each do |friendship| %>
-					<% if friendship.approve == 0 %>
+					<% if friendship.approve == 0 && !friendship.friender_id.nil? %>
 						<li class="request"><%= link_to friendship.friender.username, user_path(friendship.friender) %> wants to add you as a friend</li>
 						<%= form_for(:friendship, url: friendship_path(friendship), method: :patch) do |f| %>
-							<%= f.hidden_field :friender_id, value: friendship.friender_id %>
-							<%= f.hidden_field :friend_id, value: current_user.id %>
 							<%= f.hidden_field :approve, value: 1 %>
 							<%= f.submit "Accept", class: "accept-submit" %>
 						<% end %>
@@ -32,10 +31,8 @@
 	<div class="friends">
 		<h3 class="friends-title">Friends</h3>
 		<ul>
-			<% current_user.friendships.each do |friendship| %>
-				<% if friendship.approve == 1 %>
-					<a href="<%= user_path(friendship.friender) %>" title="<%= friendship.friender.username %>"><li class="friend"><%= image_tag(friendship.friender.picture, size: "20") %></li></a>
-				<% end %>
+			<% friends(current_user).each do |friend| %>
+				<a href="<%= user_path(friend) %>" title="<%= friend.username %>"><li class="friend"><%= image_tag(friend.picture, size: "30") %></li></a>
 			<% end %>
 		</ul>
 	</div>

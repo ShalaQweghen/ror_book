@@ -1,8 +1,8 @@
-<div class="container form">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container form edit">
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true, class: "form-body" }) do |f| %>
     <%= devise_error_messages! %>
+    <h2 class="title">Edit Account</h2>
 
     <div class="field">
       <%= f.label :username %><br />
@@ -37,15 +37,21 @@
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>
 
+    <div class="field">
+      <%= f.file_field :picture %>
+    </div>
+
     <div class="actions">
       <%= f.submit "Update" %>
     </div>
-    <%= f.file_field :picture %>
   <% end %>
 
-  <h3>Cancel my account</h3>
+  <div class="container edit cancel">
+    <h3 class="cancel-title">Cancel my account</h3>
 
-  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+    <p>Unhappy?</p>
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "cancel-button"%>
+  </div>
 
-  <%= link_to "Back", :back %>
+  <%= link_to "Back", :back, class: "back" %>
 </div>

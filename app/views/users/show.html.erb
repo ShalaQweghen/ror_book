@@ -4,29 +4,18 @@
 	<% else %>
 		<h1 class="posts-title"><%= @user.username.capitalize %>'s Posts</h1>
 	<% end %>
-	<% @user.posts.each do |post| %>
+	<% all_posts(@user.id).each do |post| %>
 		<div class="post">
-			<p><%= link_to post.body[0..250] + "...", post_path(post) %></p>
+			<p><%= link_to body_or_picture(post), path(post) %></p>
 			<% if current_user.id == @user.id %>
-				<%= link_to "Edit", edit_post_path(post), class: "left-link" %>
-				<%= link_to "Delete", post_path, method: :delete, class: "left-link" %>
+				<%= link_to "Edit", edit_path(post), class: "left-link" %>
+				<%= link_to "Delete", path(post), method: :delete, class: "left-link" %>
 			<% end %>
-			<span class="right-link" href="#">Likes (<%= post.likes.count %>)</span>
-			<span class="right-link">Comments (<%= post.comments.count %>)</span>
+			<span class="right-text" href="#">Likes (<%= post.likes.count %>)</span>
+			<span class="right-text">Comments (<%= post.comments.count %>)</span>
 		</div>
 	<% end %>
 </section>
-<% if current_user.id != @user.id && Friendship.all.none? { |f| f.friender_id == current_user.id && f.friend_id == @user.id } && Friendship.all.none? { |f| f.friender_id == @user.id && f.friend_id == current_user.id } %>
-	<section class="right">
-		<div class="right-info">
-			<%= image_tag(@user.picture, size: "50", class: "user-pic") %>
-		</div>
-		<div class="add">
-			<%= form_for(:friendship, url: friendships_path) do |f| %>
-				<%= f.hidden_field :friender_id, value: current_user.id %>
-				<%= f.hidden_field :friend_id, value: params[:id] %>
-				<%= f.submit "Add as a friend" %>
-			<% end %>
-		</div>
-	</section>
+<% if current_user.id != params[:id].to_i %>
+	<%= render "right_bar" %>
 <% end %>

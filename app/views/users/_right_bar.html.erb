@@ -1,0 +1,18 @@
+<section class="right">
+	<div class="right-info">
+		<%= image_tag(@user.picture, size: "50", class: "user-pic") %>
+	</div>
+	<% if not_friend?(@user) %>
+		<div class="add">
+			<%= form_for(:friendship, url: friendships_path) do |f| %>
+				<%= f.hidden_field :friender_id, value: current_user.id %>
+				<%= f.hidden_field :friend_id, value: params[:id] %>
+				<%= f.submit "Add as a friend" %>
+			<% end %>
+		</div>
+	<% else %>
+		<div class="add">
+				<%= link_to "Remove from friendship", friendship_path(find_friend), method: :delete %>
+		</div>
+	<% end %>
+</section>
