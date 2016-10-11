@@ -4,11 +4,7 @@
 	</div>
 	<% if not_friend?(@user) %>
 		<div class="add">
-			<%= form_for(:friendship, url: friendships_path) do |f| %>
-				<%= f.hidden_field :friender_id, value: current_user.id %>
-				<%= f.hidden_field :friend_id, value: params[:id] %>
-				<%= f.submit "Add as a friend" %>
-			<% end %>
+			<%= render "friendships/form", user: @user %>
 		</div>
 	<% else %>
 		<div class="add">

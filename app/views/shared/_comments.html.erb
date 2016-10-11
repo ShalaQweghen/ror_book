@@ -7,7 +7,7 @@
 							<p><%= comment.body %></p>
 							<span class="user-name">by <%= link_to comment.commenter.username, user_path(comment.commenter.id) %></span> <span class="created">on <%= comment.updated_at.strftime("%m-%d-%Y at %I:%M %p") %></span>
 							<% if comment.commenter.id == current_user.id %>
-								<span class="right-link comment-right-link"><%= link_to "Edit", edit_comment_path(comment.id, commentable_id: @post.id, edit: true) %></span> <span class="right-link comment-right-link"><%= link_to "Delete", comment_path(comment, commentable_id: @post.id), method: :delete %></span>
+								<span class="right-link comment-right-link"><%= link_to "Edit", edit_comment_path(comment.id, commentable_id: @posting.id, commentable_type: @posting.class, edit: true) %></span> <span class="right-link comment-right-link"><%= link_to "Delete", comment_path(comment, commentable_id: @posting.id), method: :delete %></span>
 							<% end %>
 						</div>
 				<% end %>

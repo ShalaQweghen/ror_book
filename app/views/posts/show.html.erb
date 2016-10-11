@@ -6,12 +6,7 @@
 		</div>
 		<div class="post-links">
 			<span class="user-name">Created by <%= link_to @posting.user.username, user_path(@posting.user) %></span> <span class="created">Created on <%= @posting.created_at.strftime("%m-%d-%Y at %I:%M %p") %></span> <span class="right-link">Comment (<%= @posting.comments.count %>)</span>
-			<%= form_for(:like, url: likes_path, html: { class: "like-form"}) do |f| %>
-				<%= f.hidden_field :user_id, value: current_user.id %>
-				<%= f.hidden_field :likable_id, value: @posting.id %>
-				<%= f.hidden_field :likable_type, value: "Post" %>
-				<%= f.submit "Like (#{@posting.likes.count})", class: "likes" %>
-			<% end %>
+			<%= render "likes/form", posting: @posting %>
 		</div>
 	</section>
 	<%= render "shared/comments" %>

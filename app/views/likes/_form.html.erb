@@ -1,0 +1,6 @@
+<%= form_for(:like, url: likes_path, html: { class: "like-form"}) do |f| %>
+	<%= f.hidden_field :user_id, value: current_user.id %>
+	<%= f.hidden_field :likable_id, value: posting.id %>
+	<%= f.hidden_field :likable_type, value: "#{posting.class}" %>
+	<%= f.submit "Like (#{posting.likes.count})", class: "likes" %>
+<% end %>

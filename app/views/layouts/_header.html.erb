@@ -1,10 +1,5 @@
 <header class="main">
-	<h1 class="header-title"><%= link_to "RORbook", root_path %></h1>
-	<% if user_signed_in? %>
-		<div class="search-box">
-			<input class="search" type="text" placeholder="Search a User...">
-		</div>
-	<% end %>
+	<%= link_to image_tag("r.png", size: "25", title: "rorBook"), root_path, class: "header-title" %>
 	<nav class="nav-up">
 		<ul>
 		<% if user_signed_in? %>

@@ -1,4 +1,5 @@
 class FriendshipsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     redirect_to user_path(params[:user_id], friend: true)

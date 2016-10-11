@@ -1,11 +1,6 @@
 class PicturesController < ApplicationController
 	before_action :authenticate_user!
 
-	def index
-		list = current_user.friendships.map { |f| f.friender_id } + current_user.friendings.map { |f| f.friend_id } << current_user.id
-		@pictures = Picture.all.order(created_at: :desc).select { |p| list.include?(p.user_id) }
-	end
-
 	def show
 		@posting = Picture.find(params[:id])
 		if params[:edit]
