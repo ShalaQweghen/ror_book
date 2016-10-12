@@ -2,7 +2,7 @@
 	<h3 class="friends-title">Friends</h3>
 	<ul>
 		<% friends(current_user).each do |friend| %>
-			<a href="<%= user_path(friend) %>" title="<%= friend.username %>"><li class="friend"><%= image_tag(friend.picture, size: "30") %></li></a>
+			<a href="<%= user_path(friend) %>" title="<%= friend.username %>"><li class="friend"><%= image_tag(friend.picture, size: "29") %></li></a>
 		<% end %>
 	</ul>
 </div>

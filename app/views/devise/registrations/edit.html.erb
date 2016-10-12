@@ -1,4 +1,4 @@
-<div class="container form edit">
+<div class="container form-devise">
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true, class: "form-body" }) do |f| %>
     <%= devise_error_messages! %>
@@ -19,7 +19,7 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :password %> <em>(leave blank if you don't want to change it)</em><br />
       <%= f.password_field :password, autocomplete: "off" %>
       <% if @minimum_password_length %>
         <br />
@@ -33,7 +33,7 @@
     </div>
 
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :current_password %> <em>(we need your current password to confirm your changes)</em><br />
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>
 
@@ -41,17 +41,15 @@
       <%= f.file_field :picture %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Update" %>
-    </div>
+    <%= f.submit "Update", class: "submit" %>
+
   <% end %>
 
-  <div class="container edit cancel">
-    <h3 class="cancel-title">Cancel my account</h3>
+  <div class="container form-devise form-body">
+    <h3 class="title">Unhappy?</h3>
 
-    <p>Unhappy?</p>
-    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "cancel-button"%>
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "submit"%>
   </div>
 
-  <%= link_to "Back", :back, class: "back" %>
+  <%= link_to "Back", :back, class: "back-button" %>
 </div>

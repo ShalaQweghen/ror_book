@@ -1,6 +1,6 @@
 <header class="main">
-	<%= link_to image_tag("r.png", size: "25", title: "rorBook"), root_path, class: "header-title" %>
-	<nav class="nav-up">
+	<%= link_to image_tag("r.png", size: "25", title: "RoRbook"), root_path, class: "logo" %>
+	<nav class="nav">
 		<ul>
 		<% if user_signed_in? %>
 			<a href="<%= users_path %>"><li>Users</li></a>

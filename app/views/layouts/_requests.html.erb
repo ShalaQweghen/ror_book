@@ -1,4 +1,4 @@
-<div class="accept">
+<div class="requests">
 	<h3 class="request-title">Friend Requests</h3>
 	<ul>
 		<% current_user.friendships.each do |friendship| %>
@@ -6,7 +6,7 @@
 				<li class="request"><%= link_to friendship.friender.username, user_path(friendship.friender) %> wants to add you as a friend</li>
 				<%= form_for(:friendship, url: friendship_path(friendship), method: :patch) do |f| %>
 					<%= f.hidden_field :approve, value: 1 %>
-					<%= f.submit "Accept", class: "accept-submit" %>
+					<%= f.submit "Accept", class: "accept" %>
 				<% end %>
 				<%= link_to "Decline", friendship_path(friendship), method: :delete, class: "decline" %>
 			<% end %>

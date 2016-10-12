@@ -1,4 +1,4 @@
-<div class="container form">
+<div class="container form-unauthorized">
 
 	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-body" }) do |f| %>
 	  <%= devise_error_messages! %>
@@ -9,9 +9,7 @@
 	    <%= f.email_field :email, autofocus: true %>
 	  </div>
 
-	  <div class="actions">
-	    <%= f.submit "Send" %>
-	  </div>
+	  <%= f.submit "Send", class: "submit" %>
 
 	  <%= render "devise/shared/links" %>
 	<% end %>

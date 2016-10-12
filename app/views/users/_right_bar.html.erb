@@ -1,14 +1,12 @@
-<section class="right">
-	<div class="right-info">
+<section class="right-bar">
+	<div class="right-bar-info">
 		<%= image_tag(@user.picture, size: "50", class: "user-pic") %>
 	</div>
-	<% if not_friend?(@user) %>
-		<div class="add">
+	<div class="add-friend">
+		<% if not_friend?(@user) %>
 			<%= render "friendships/form", user: @user %>
-		</div>
-	<% else %>
-		<div class="add">
-				<%= link_to "Remove from friendship", friendship_path(find_friend), method: :delete %>
-		</div>
-	<% end %>
+		<% else %>
+			<%= link_to "Remove from friendship", friendship_path(find_friend), method: :delete %>
+		<% end %>
+	</div>
 </section>

@@ -1,16 +1,16 @@
-<section class="posts">
-	<h1 class="posts-title">Posts</h1>
+<section class="container">
+	<h1 class="title">Posts</h1>
 	<% posts.each do |post| %>
 		<div class="post">
-			<%= image_tag(post.user.picture, size: "30", class: "pic") %>
-			<%= link_to post.user.username, user_path(post.user), class: "name" %>
+			<%= image_tag(post.user.picture, size: "30", class: "post-index-pic") %>
+			<%= link_to post.user.username, user_path(post.user), class: "post-index-name" %>
 			<% if post.class == Post %>
-				<p class="post-text-index"><%= link_to post.body[0..250] + "...", post_path(post) %></p>
+				<p><%= link_to post.body[0..250] + "...", post_path(post), class: "post-text-index" %></p>
 			<% else %>
-				<%= link_to image_tag(post.picture, class: "picture"), picture_path(post)%>
+				<%= link_to image_tag(post.picture, class: "picture"), picture_path(post) %>
 			<% end %>
-			<span class="created">Created on <%= post.created_at.strftime("%m-%d-%Y at %I:%M %p") %>
-			<%= link_to "Comment (#{post.comments.count})", post_path(post), class: "right-link" %>
+			<i>Created on <%= post.created_at.strftime("%m-%d-%Y at %I:%M %p") %></i>
+			<%= link_to "Comment (#{post.comments.count})", path(post), class: "right-link" %>
 			<%= render "likes/form", posting: post %>
 		</div>
 	<% end %>

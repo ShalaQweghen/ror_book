@@ -1,11 +1,9 @@
-<div class="post-form">
+<div class="form-container">
 	<%= form_for(@picture, html: { multipart: true }) do |f| %>
 		<%= f.hidden_field :id, value: params[:id] %>
 		<div class="attach upload">
 			<%= f.file_field :picture, accept: "image/jpeg, image/gif, image/png" %>
 		</div>
-		<div class="post-submit">
-			<%= f.submit "Submit" %>
-		</div>
+		<%= f.submit "Submit", class: "submit" %>
 	<% end %>
 </div>

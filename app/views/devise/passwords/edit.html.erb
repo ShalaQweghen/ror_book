@@ -1,4 +1,4 @@
-<div class="container form edit">
+<div class="container form-devise">
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "form-body" }) do |f| %>
     <%= devise_error_messages! %>
@@ -18,9 +18,7 @@
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Change" %>
-    </div>
+    <%= f.submit "Change", class: "submit" %>
 
     <%= render "devise/shared/links" %>
   <% end %>

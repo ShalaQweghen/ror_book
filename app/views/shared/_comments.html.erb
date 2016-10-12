@@ -1,17 +1,16 @@
-<section class="comments-body right-section">
-		<div class="comments">
-			<h2 class="comments-title">Comments:</h2>
-			<% @posting.comments.each do |comment| %>
-				<% unless comment.commenter.nil? %>
-						<div class="comment">
-							<p><%= comment.body %></p>
-							<span class="user-name">by <%= link_to comment.commenter.username, user_path(comment.commenter.id) %></span> <span class="created">on <%= comment.updated_at.strftime("%m-%d-%Y at %I:%M %p") %></span>
-							<% if comment.commenter.id == current_user.id %>
-								<span class="right-link comment-right-link"><%= link_to "Edit", edit_comment_path(comment.id, commentable_id: @posting.id, commentable_type: @posting.class, edit: true) %></span> <span class="right-link comment-right-link"><%= link_to "Delete", comment_path(comment, commentable_id: @posting.id), method: :delete %></span>
-							<% end %>
-						</div>
+<section class="comments">
+	<h2 class="comments-title">Comments:</h2>
+	<% @posting.comments.each do |comment| %>
+		<% unless comment.commenter.nil? %>
+			<div class="comment">
+				<p><%= comment.body %></p>
+				<i>by <%= link_to comment.commenter.username, user_path(comment.commenter.id) %></i> <i>on <%= comment.updated_at.strftime("%m-%d-%Y at %I:%M %p") %></i>
+				<% if comment.commenter.id == current_user.id %>
+					<%= link_to "Edit", edit_comment_path(comment.id, commentable_id: @posting.id, commentable_type: @posting.class, edit: true), class: "right-link" %>
+					<%= link_to "Delete", comment_path(comment, commentable_id: @posting.id), method: :delete, class: "right-link" %>
 				<% end %>
-			<% end %>
-			<%= render "comments/form" %>
-		</div>
-	</section>
+			</div>
+		<% end %>
+	<% end %>
+	<%= render "comments/form" %>
+</section>

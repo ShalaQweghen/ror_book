@@ -1,4 +1,4 @@
-<div class="container form edit">
+<div class="container form-unauthorized">
 
 	<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "form-body" }) do |f| %>
 	  <%= devise_error_messages! %>
@@ -9,9 +9,7 @@
 	    <%= f.email_field :email, autofocus: true %>
 	  </div>
 
-	  <div class="actions">
-	    <%= f.submit "Resend unlock instructions" %>
-	  </div>
+	  <%= f.submit "Resend unlock instructions", class: "submit" %>
 
 	  <%= render "devise/shared/links" %>
 	<% end %>

@@ -1,15 +1,15 @@
 <section class="profile">
 	<div class="header-im">
-		<%= link_to image_tag("r.png", size: "25", title: "rorBook"), root_path, class: "header-title" %>
+		<%= link_to image_tag("r.png", size: "25", title: "RoRbook"), root_path, class: "logo" %>
 	</div>
-	<div class="info">
+	<div class="user-info">
 		<%= link_to image_tag(current_user.picture, size: "50", class: "user-pic"), user_path(current_user) %>
-		<h2><%= current_user.username %></h2>
+		<h2 class="username"><%= current_user.username %></h2>
 	</div>
-	<div class="actions">
-		<%= link_to "Create a post", new_post_path(id: current_user.id), class: "action" %>
-		<%= link_to "Share a picture", new_picture_path(id: current_user.id), class: "action" %>
-		<%= link_to "Edit account", edit_user_registration_path(id: current_user.id), class: "action" %>
+	<div class="profile-actions">
+		<%= link_to "Create a post", new_post_path(id: current_user.id), class: "profile-action" %>
+		<%= link_to "Share a picture", new_picture_path(id: current_user.id), class: "profile-action" %>
+		<%= link_to "Edit account", edit_user_registration_path(id: current_user.id), class: "profile-action" %>
 	</div>
 	<% if current_user.friendships.any? { |f| f.approve == 0 && !f.friender_id.nil?} %>
 		<%= render "layouts/requests" %>

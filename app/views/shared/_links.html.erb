@@ -1,0 +1,3 @@
+<i>Created by <%= link_to @posting.user.username, user_path(@posting.user) %></i> <i>Created on <%= @posting.created_at.strftime("%m-%d-%Y at %I:%M %p") %></i>
+<span class="right-link">Comment (<%= @posting.comments.count %>)</span>
+<%= render "likes/form", posting: @posting %>

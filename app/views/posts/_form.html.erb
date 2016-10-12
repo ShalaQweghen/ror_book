@@ -1,20 +1,19 @@
-<div class="post-form">
+<div class="form-container">
 	<%= form_for(@post, html: { multipart: true }) do |f| %>
 		<%= f.hidden_field :id, value: params[:id] %>
 		<%= f.text_area :body %>
 		<% if f.object.picture? %>
 			<div class="preview">
 					<%= image_tag(f.object.picture.thumb) %>
-					<%= f.check_box :remove_picture %>
-					<%= f.label :remove_picture, class: "check" %>
+					<%= f.check_box :remove_picture, class: "checkbox" %>
+					<%= f.label :remove_picture, class: "checkbox-label" %>
 			</div>
 			<p class="or">OR</p>
 		<% end %>
 		<div class="attach">
 			<%= f.file_field :picture, accept: "image/jpeg, image/gif, image/png" %>
 		</div>
-		<div class="post-submit">
-			<%= f.submit "Submit" %>
-		</div>
+
+		<%= f.submit "Submit", class: "submit" %>
 	<% end %>
 </div>

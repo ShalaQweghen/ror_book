@@ -1,9 +1,11 @@
-<section class="posts">
-	<% if current_user.id == @user.id %>
-		<h1 class="posts-title">Your Posts</h1>
-	<% else %>
-		<h1 class="posts-title"><%= @user.username.capitalize %>'s Posts</h1>
-	<% end %>
+<section class="container">
+		<h1 class="title">
+			<% if current_user.id == @user.id %>
+				Your Posts
+			<% else %>
+			<%= @user.username.capitalize %>'s Posts
+			<% end %>
+		</h1>
 	<% all_posts(@user.id).each do |post| %>
 		<div class="post">
 			<p><%= link_to body_or_picture(post), path(post) %></p>
@@ -11,11 +13,11 @@
 				<%= link_to "Edit", edit_path(post), class: "left-link" %>
 				<%= link_to "Delete", path(post), method: :delete, class: "left-link" %>
 			<% end %>
-			<span class="right-text" href="#">Likes (<%= post.likes.count %>)</span>
+			<span class="right-text">Likes (<%= post.likes.count %>)</span>
 			<span class="right-text">Comments (<%= post.comments.count %>)</span>
 		</div>
 	<% end %>
 </section>
-<% if current_user.id != params[:id].to_i %>
+<% if current_user.id.to_i != params[:id].to_i %>
 	<%= render "right_bar" %>
 <% end %>
