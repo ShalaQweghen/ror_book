@@ -11,7 +11,7 @@ module UsersHelper
 
 	def body_or_picture(post)
 		if picture?(post)
-			post.picture
+			image_tag(post.picture, class: "picture")
 		else
 			post.body[0..250] + "..."
 		end

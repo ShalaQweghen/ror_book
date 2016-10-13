@@ -335,6 +335,7 @@ footer {
 .form-body {
 	padding: 30px;
 	margin-left: 19%;
+	margin-bottom: 10px;
 	width: 40%;
 	border: 1px solid #e2e2e2;
 }

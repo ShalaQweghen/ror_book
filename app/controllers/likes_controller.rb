@@ -2,7 +2,7 @@ class LikesController < ApplicationController
 	before_action :authenticate_user!
 
 	def create
-		@like = Like.where(user_id: params[:like][:user_id], likable_id: params[:like][:likable_id])
+		@like = Like.where(user_id: params[:like][:user_id], likable_id: params[:like][:likable_id], likable_type: params[:like][:likable_type])
 		if @like.blank?
 			@like = Like.new(like_params)
 			if @like.save

@@ -1,6 +1,5 @@
 <div class="form-container">
 	<%= form_for(@comment) do |f| %>
-		<%= f.hidden_field :commenter_id, value: current_user.id %>
 		<%= f.hidden_field :commentable_id, value: @posting.id %>
 		<%= f.hidden_field :commentable_type, value: @posting.class == Post ? "Post" : "Picture"  %>
 		<%= f.label :body, "Your comment: " %><br>

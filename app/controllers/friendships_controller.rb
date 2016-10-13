@@ -8,6 +8,7 @@ class FriendshipsController < ApplicationController
   def create
   	@friending = current_user.friendships.build(friendship_params)
   	if @friending.save
+      flash[:success] = "Friend request sent!"
       redirect_back(fallback_location: user_path(current_user.id))
     else
       redirect_to root_path
@@ -21,6 +22,7 @@ class FriendshipsController < ApplicationController
   def update
     @friendship = Friendship.find(params[:id])
     @friendship.update_attributes(friendship_params)
+    flash[:success] = "You are now friends with #{@friendship.friender.username}"
     redirect_back(fallback_location: user_path(current_user.id))
   end
 
