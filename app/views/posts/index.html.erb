@@ -5,7 +5,7 @@
 			<%= image_tag(post.user.picture, size: "30", class: "post-index-pic") %>
 			<%= link_to post.user.username, user_path(post.user), class: "post-index-name" %>
 			<% if post.class == Post %>
-				<p><%= link_to post.body[0..250] + "...", post_path(post), class: "post-text-index" %></p>
+				<p><%= link_to post.body[0..250] + "...", post_path(post), class: "post-index-text" %></p>
 			<% else %>
 				<%= link_to image_tag(post.picture, class: "picture"), picture_path(post) %>
 			<% end %>

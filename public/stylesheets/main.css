@@ -79,14 +79,6 @@ i { font-size: 10px; }
 	margin-bottom: 40px;
 }
 
-.post-index-name {
-	display: inline-block;
-	vertical-align: top;
-	margin-bottom: 10px;
-}
-
-.post-index-pic { margin-bottom: 10px; }
-
 /* ===============
 	     LAYOUT
 	 =============== */
@@ -527,9 +519,17 @@ footer {
 
 /* POST */
 
-.post-text-index { color: inherit; }
+.post-index-name {
+	display: inline-block;
+	vertical-align: top;
+	margin-bottom: 10px;
+}
 
-.post-text-index:hover { text-decoration: none; }
+.post-index-pic { margin-bottom: 10px; }
+
+.post-index-text { color: inherit; }
+
+.post-index-text:hover { text-decoration: none; }
 
 /* USER */
 
