@@ -1,27 +1,23 @@
-<div class="container form-unauthorized">
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-body"}) do |f| %>
+  <h2 class="title">Log in</h2>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-body"}) do |f| %>
-    <h2 class="title">Log in</h2>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field-checkbox">
+      <%= f.check_box :remember_me, class: "checkbox" %>
+      <%= f.label :remember_me, class: "checkbox-label" %>
     </div>
+  <% end -%>
 
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
+  <%= f.submit "Log in", class: "submit" %>
 
-    <% if devise_mapping.rememberable? -%>
-      <div class="field-checkbox">
-        <%= f.check_box :remember_me, class: "checkbox" %>
-        <%= f.label :remember_me, class: "checkbox-label" %>
-      </div>
-    <% end -%>
-
-    <%= f.submit "Log in", class: "submit" %>
-
-    <%= render "devise/shared/links" %>
-  <% end %>
-
-</div>
+  <%= render "devise/shared/links" %>
+<% end %>

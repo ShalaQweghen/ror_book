@@ -11,11 +11,11 @@ class PicturesController < ApplicationController
 	end
 
 	def new
-		@picture = User.find(params[:id]).pictures.build
+		@picture = current_user.pictures.build
 	end
 
 	def create
-		@picture = User.find(params[:picture][:id]).pictures.build(picture_params)
+		@picture = current_user.pictures.build(picture_params)
 		if @picture.save
 			flash[:success] = "Post successfully created!"
 			redirect_to @picture
@@ -49,6 +49,6 @@ class PicturesController < ApplicationController
 	private
 
 	def picture_params
-		params.require(:picture).permit(:user_id, :picture)
+		params.require(:picture).permit(:picture)
 	end
 end

@@ -1,6 +1,5 @@
 <div class="form-container">
 	<%= form_for(@post, html: { multipart: true }) do |f| %>
-		<%= f.hidden_field :id, value: params[:id] %>
 		<%= f.text_area :body %>
 		<% if f.object.picture? %>
 			<div class="preview">

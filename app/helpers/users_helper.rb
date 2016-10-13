@@ -2,7 +2,7 @@ module UsersHelper
 
 	def all_posts(id)
 		user = User.find(id)
-		posts = user.posts + user.pictures
+		(user.posts + user.pictures).sort { |p1, p2| p2.created_at <=> p1.created_at}
 	end
 
 	def picture?(post)

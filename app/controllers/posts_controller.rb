@@ -14,11 +14,11 @@ class PostsController < ApplicationController
 	end
 
 	def new
-		@post = User.find(params[:id]).posts.build
+		@post = current_user.posts.build
 	end
 
 	def create
-		@post = User.find(params[:post][:id]).posts.build(post_params)
+		@post = current_user.posts.build(post_params)
 		if @post.save
 			flash[:success] = "Post successfully created!"
 			redirect_to @post
@@ -46,12 +46,12 @@ class PostsController < ApplicationController
 	def destroy
 		Post.find(params[:id]).destroy
 		flash[:success] = "Post successfully deleted!"
-		redirect_to posts_path
+		redirect_back(fallback_location: posts_path)
 	end
 
 	private
 
 	def post_params
-		params.require(:post).permit(:body, :user_id, :picture, :remove_picture)
+		params.require(:post).permit(:body, :picture, :remove_picture)
 	end
 end

@@ -1,17 +1,13 @@
-<div class="container form-unauthorized">
+<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "form-body" }) do |f| %>
+	<%= devise_error_messages! %>
+	<h2 class="title">Resend unlock instructions</h2>
 
-	<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "form-body" }) do |f| %>
-	  <%= devise_error_messages! %>
-	  <h2 class="title">Resend unlock instructions</h2>
+	<div class="field">
+	  <%= f.label :email %><br />
+	  <%= f.email_field :email, autofocus: true %>
+	</div>
 
-	  <div class="field">
-	    <%= f.label :email %><br />
-	    <%= f.email_field :email, autofocus: true %>
-	  </div>
+	<%= f.submit "Resend unlock instructions", class: "submit" %>
 
-	  <%= f.submit "Resend unlock instructions", class: "submit" %>
-
-	  <%= render "devise/shared/links" %>
-	<% end %>
-
-</div>
+	<%= render "devise/shared/links" %>
+<% end %>

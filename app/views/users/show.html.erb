@@ -1,4 +1,4 @@
-<section class="container">
+<section>
 		<h1 class="title">
 			<% if current_user.id == @user.id %>
 				Your Posts
@@ -9,7 +9,10 @@
 	<% all_posts(@user.id).each do |post| %>
 		<div class="post">
 			<p><%= link_to body_or_picture(post), path(post) %></p>
+			<i>Created on <%= post.created_at.strftime("%m-%d-%Y at %I:%M %p") %></i>
 			<% if current_user.id == @user.id %>
+				<br>
+				<br>
 				<%= link_to "Edit", edit_path(post), class: "left-link" %>
 				<%= link_to "Delete", path(post), method: :delete, class: "left-link" %>
 			<% end %>

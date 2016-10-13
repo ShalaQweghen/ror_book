@@ -7,9 +7,9 @@
 		<h2 class="username"><%= current_user.username %></h2>
 	</div>
 	<div class="profile-actions">
-		<%= link_to "Create a post", new_post_path(id: current_user.id), class: "profile-action" %>
-		<%= link_to "Share a picture", new_picture_path(id: current_user.id), class: "profile-action" %>
-		<%= link_to "Edit account", edit_user_registration_path(id: current_user.id), class: "profile-action" %>
+		<%= link_to "Create a post", new_post_path, class: "profile-action" %>
+		<%= link_to "Share a picture", new_picture_path, class: "profile-action" %>
+		<%= link_to "Edit account", edit_user_registration_path, class: "profile-action" %>
 	</div>
 	<% if current_user.friendships.any? { |f| f.approve == 0 && !f.friender_id.nil?} %>
 		<%= render "layouts/requests" %>

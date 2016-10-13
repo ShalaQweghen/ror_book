@@ -1,5 +1,4 @@
-<div class="container form-devise">
-
+<div class="form-devise">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true, class: "form-body" }) do |f| %>
     <%= devise_error_messages! %>
     <h2 class="title">Edit Account</h2>
@@ -45,11 +44,10 @@
 
   <% end %>
 
-  <div class="container form-devise form-body">
+  <div class="form-devise form-body">
     <h3 class="title">Unhappy?</h3>
 
     <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "submit"%>
   </div>
-
-  <%= link_to "Back", :back, class: "back-button" %>
 </div>
+<%= link_to "Back", :back, class: "back-button" %>

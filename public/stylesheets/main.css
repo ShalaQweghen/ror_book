@@ -121,6 +121,25 @@ header {
 	cursor: pointer;
 }
 
+/* ALERTS */
+
+.alert {
+	position: absolute;
+	padding: 5px;
+	width: 300px;
+	top: 55px;
+	right: 5px;
+	font-size: 15px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.alert-alert,
+.alert-error { border: 2px solid red; }
+
+.alert-notice,
+.alert-success { border: 2px solid green; }
+
 /* FOOTER */
 
 footer {
@@ -273,12 +292,6 @@ footer {
 
 .form-devise { margin-left: 19%; }
 
-.form-unauthorized {
-	width: inherit;
-	margin: auto;
-	margin-top: 80px;
-}
-
 .submit {
 	width: 100%;
 	display: block;
@@ -321,9 +334,8 @@ footer {
 
 .form-body {
 	padding: 30px;
-	margin: auto;
-	margin-bottom: 20px;
-	width: 30%;
+	margin-left: 19%;
+	width: 40%;
 	border: 1px solid #e2e2e2;
 }
 
