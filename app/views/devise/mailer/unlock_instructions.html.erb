@@ -1,7 +1,37 @@
-<p>Hello <%= @resource.email %>!</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<style>
+		header {
+			display: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			height: 35px;
+			padding-top: 5px;
+			background-color: #f0f8ff;
+		}
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+		header img {
+			display: block;
+			width: 25px;
+			margin: auto;
+		}
+		p { text-align: center; }
+		span { font-style: italic; }
+	</style>
+</head>
+<body>
+	<header>
+		<img src="http://www.clipartbest.com/cliparts/4i9/xEj/4i9xEjdGT.png" alt="logo" size="25">
+	</header>
+	<p>Hello <span><%= @resource.email %></span>!</p>
 
-<p>Click the link below to unlock your account:</p>
+	<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+	<p>Click the link below to unlock your account:</p>
+
+	<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+</body>
+</html>

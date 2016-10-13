@@ -1,5 +1,39 @@
-<p>Welcome <%= @email %>!</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to RoRbook!</title>
+	<style>
+		header {
+			display: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			height: 35px;
+			padding-top: 5px;
+			background-color: #f0f8ff;
+		}
 
-<p>You can confirm your account email through the link below:</p>
+		header img {
+			display: block;
+			width: 25px;
+			margin: auto;
+		}
+		p { text-align: center; }
+		span { font-style: italic; }
+	</style>
+</head>
+<body>
+	<header>
+		<img src="http://www.clipartbest.com/cliparts/4i9/xEj/4i9xEjdGT.png" alt="logo" size="25">
+	</header>
+	<p>Welcome <span><%= @email %></span> to RoRbook!</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+	<p>You can confirm your account email through the link below:</p>
+
+	<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+	<p>We hope you enjoy your time on the site!</p>
+
+	<p>RoRbook Team</p>
+</body>
+</html>
