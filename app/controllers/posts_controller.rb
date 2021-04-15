@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :set_post, only: [:show, :edit, :update, :destroy]
 
 	def index
 	end
 
 	def show
-		@posting = Post.find(params[:id])
 		if params[:edit]
 			@comment = Comment.find(params[:comment_id])
 		else
@@ -29,11 +29,9 @@ class PostsController < ApplicationController
 	end
 
 	def edit
-		@post = Post.find(params[:id])
 	end
 
 	def update
-		@post = Post.find(params[:id])
 		if @post.update_attributes(post_params)
 			flash[:success] = "Post successfully updated!"
 			redirect_to @post
@@ -44,7 +42,8 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
-		Post.find(params[:id]).destroy
+		@post.destroy
+		
 		flash[:success] = "Post successfully deleted!"
 		redirect_back(fallback_location: posts_path)
 	end
@@ -53,5 +52,9 @@ class PostsController < ApplicationController
 
 	def post_params
 		params.require(:post).permit(:body, :picture, :remove_picture)
+	end
+
+	def set_post
+		@post = Post.find(params[:id])
 	end
 end
